@@ -36,11 +36,11 @@ public abstract class StateBase
     {
     }
     
-    public virtual void Update()
+    public virtual void Update(double deltaTime)
     {
     }
 
-    public virtual void FixedUpdate()
+    public virtual void FixedUpdate(double deltaTime)
     {
     }
 

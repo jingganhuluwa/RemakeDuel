@@ -3,9 +3,11 @@
 // 描述：
 // 日期：2025/03/25 19:29
 
+using System;
+
 namespace TinyFramework;
 
-public class SettingManager:Singleton<SettingManager>
+public class SettingManager:Singleton<SettingManager>, IDisposable
 {
     public SettingData Setting { get; private set; } 
 

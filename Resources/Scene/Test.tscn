@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyaiyxrd7trln"]
+
+[ext_resource type="Script" uid="uid://bobqsyl8tsnhd" path="res://Scripts/Game/Test.cs" id="1_18bc1"]
+[ext_resource type="PackedScene" uid="uid://b4xu084bqkrbv" path="res://Resources/Prefabs/TestPrefab.tscn" id="2_k7sb0"]
+
+[node name="Test" type="Node"]
+script = ExtResource("1_18bc1")
+_testPrefab = ExtResource("2_k7sb0")

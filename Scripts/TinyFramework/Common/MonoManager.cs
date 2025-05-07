@@ -9,14 +9,14 @@ namespace TinyFramework;
 
 public partial class MonoManager:SingletonNode<MonoManager>
 {
-    private Action _updateEvent;
-    private Action _fixedUpdateEvent;
+    private Action<double> _updateEvent;
+    private Action<double> _fixedUpdateEvent;
     
     /// <summary>
     /// 添加Update监听
     /// </summary>
     /// <param name="action"></param>
-    public void AddUpdateListener(Action action)
+    public void AddUpdateListener(Action<double> action)
     {
         _updateEvent += action;
     }
@@ -24,7 +24,7 @@ public partial class MonoManager:SingletonNode<MonoManager>
     /// 移除Update监听
     /// </summary>
     /// <param name="action"></param>
-    public void RemoveUpdateListener(Action action)
+    public void RemoveUpdateListener(Action<double> action)
     {
         _updateEvent -= action;
     }
@@ -33,7 +33,7 @@ public partial class MonoManager:SingletonNode<MonoManager>
     /// 添加FixedUpdate监听
     /// </summary>
     /// <param name="action"></param>
-    public void AddFixedUpdateListener(Action action)
+    public void AddFixedUpdateListener(Action<double> action)
     {
         _fixedUpdateEvent += action;
     }
@@ -41,19 +41,19 @@ public partial class MonoManager:SingletonNode<MonoManager>
     /// 移除FixedUpdate监听
     /// </summary>
     /// <param name="action"></param>
-    public void RemoveFixedUpdateListener(Action action)
+    public void RemoveFixedUpdateListener(Action<double> action)
     {
         _fixedUpdateEvent -= action;
     }
 
     public override void _Process(double delta)
     {
-        _updateEvent?.Invoke();
+        _updateEvent?.Invoke(delta);
     }
 
 
     public override void _PhysicsProcess(double delta)
     {
-        _fixedUpdateEvent?.Invoke();
+        _fixedUpdateEvent?.Invoke(delta);
     }
 }
