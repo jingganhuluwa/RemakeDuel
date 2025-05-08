@@ -45,7 +45,7 @@ public partial class SingletonNode<T> : Node where T : Node, new()
     {
         if (!string.IsNullOrEmpty(path))
         {
-            return ResManager.Instance.Load<T>(path);
+            return ResManager.Instance.Load<T>(path,GameRoot.Instance);
         }
         Instance = new T();
         Instance.Name = typeof(T).Name;

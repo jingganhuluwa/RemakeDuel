@@ -34,12 +34,12 @@ public partial class UIManager:SingletonNode<UIManager>
     private readonly Queue<string> _tipsQueue = new Queue<string>();
     private bool isTipShow = false;
     
-    public  static readonly  string ResPath = Path.Combine(PathDefine.UIPath,"UIManager");
+    public  static readonly  string ResPath = Path.Combine(PathDefine.UIPath,"UIManager.tscn");
 
     public override void Init()
     {
         base.Init();
-        //_tips.Hide();
+        _tips.Hide();
         
     }
 

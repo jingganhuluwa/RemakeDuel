@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="RemakeDuel"
-run/main_scene="uid://cyaiyxrd7trln"
+run/main_scene="uid://dr2h1sfcjui33"
 config/features=PackedStringArray("4.4", "C#", "Mobile")
 config/icon="res://icon.svg"
 

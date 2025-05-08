@@ -60,8 +60,7 @@ public class StateMachine
         if (CurrentStateObj != null)
         {
             CurrentStateObj.Exit();
-            CurrentStateObj.RemoveUpdate(CurrentStateObj.Update);
-            CurrentStateObj.RemoveFixedUpdate(CurrentStateObj.FixedUpdate);
+            LogicFrameManager.Instance.RemoveLogicFrameListener(CurrentStateObj.Update);
             
         }
 
@@ -69,8 +68,7 @@ public class StateMachine
         CurrentStateObj = GetState<T>(newStateType);
         CurrentStateType = newStateType;
         CurrentStateObj.Enter();
-        CurrentStateObj.OnUpdate(CurrentStateObj.Update);
-        CurrentStateObj.OnFixedUpdate(CurrentStateObj.FixedUpdate);
+        LogicFrameManager.Instance.AddLogicFrameListener(CurrentStateObj.Update);
 
         return true;
     }
@@ -97,8 +95,7 @@ public class StateMachine
     {
         // 处理当前状态的额外逻辑
         CurrentStateObj.Exit();
-        CurrentStateObj.RemoveUpdate(CurrentStateObj.Update);
-        CurrentStateObj.RemoveFixedUpdate(CurrentStateObj.FixedUpdate);
+        LogicFrameManager.Instance.RemoveLogicFrameListener(CurrentStateObj.Update);
         CurrentStateType = -1;
         CurrentStateObj = null;
         // 处理缓存中所有状态的逻辑

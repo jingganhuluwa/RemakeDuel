@@ -58,40 +58,40 @@ public static class TinyExtension
     #endregion
     
     
-    #region Mono
-
-    /// <summary>
-    /// 添加Update监听
-    /// </summary>
-    public static void OnUpdate(this object obj, Action<double> action)
-    {
-        MonoManager.Instance.AddUpdateListener(action);
-    }
-    /// <summary>
-    /// 移除Update监听
-    /// </summary>
-    public static void RemoveUpdate(this object obj, Action<double> action)
-    {
-        MonoManager.Instance.RemoveUpdateListener(action);
-    }
-    
-
-    /// <summary>
-    /// 添加FixedUpdate监听
-    /// </summary>
-    public static void OnFixedUpdate(this object obj, Action<double> action)
-    {
-        MonoManager.Instance.AddFixedUpdateListener(action);
-    }
-    /// <summary>
-    /// 移除Update监听
-    /// </summary>
-    public static void RemoveFixedUpdate(this object obj, Action<double> action)
-    {
-        MonoManager.Instance.RemoveFixedUpdateListener(action);
-    }
-    
-
-    #endregion
+    // #region Mono
+    //
+    // /// <summary>
+    // /// 添加Update监听
+    // /// </summary>
+    // public static void OnUpdate(this object obj, Action<double> action)
+    // {
+    //     MonoManager.Instance.AddUpdateListener(action);
+    // }
+    // /// <summary>
+    // /// 移除Update监听
+    // /// </summary>
+    // public static void RemoveUpdate(this object obj, Action<double> action)
+    // {
+    //     MonoManager.Instance.RemoveUpdateListener(action);
+    // }
+    //
+    //
+    // /// <summary>
+    // /// 添加FixedUpdate监听
+    // /// </summary>
+    // public static void OnFixedUpdate(this object obj, Action<double> action)
+    // {
+    //     MonoManager.Instance.AddFixedUpdateListener(action);
+    // }
+    // /// <summary>
+    // /// 移除Update监听
+    // /// </summary>
+    // public static void RemoveFixedUpdate(this object obj, Action<double> action)
+    // {
+    //     MonoManager.Instance.RemoveFixedUpdateListener(action);
+    // }
+    //
+    //
+    // #endregion
     
 }

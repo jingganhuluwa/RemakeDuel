@@ -32,9 +32,14 @@ public struct VInt:IComparable<VInt>
     const int FIX_MULTIPLE = 1024;
 
     public static readonly VInt one = new VInt((long)FIX_MULTIPLE);
-    public int Int { get { return (int)i; } }
-    public float RawFloat { get { return (float)this.i * 1.0f / FIX_MULTIPLE; } }
-    public int RawInt { get { return (int)i / FIX_MULTIPLE; } }
+    public int Int => (int)i;
+    public float RawFloat => i * 1.0f / FIX_MULTIPLE;
+    public int RawInt => (int)i / FIX_MULTIPLE;
+    
+    /// <summary>
+    /// 显示1位小数
+    /// </summary>
+    public float ShowFloat => (float) Math.Round(RawFloat, 1);
 
     private VInt(long i)
     {
@@ -79,7 +84,6 @@ public struct VInt:IComparable<VInt>
         return this.RawFloat.ToString();
     }
 
- 
 
     public int CompareTo(VInt other)
     {
