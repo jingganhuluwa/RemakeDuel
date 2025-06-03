@@ -20,6 +20,8 @@ public partial class AudioManager : SingletonNode<AudioManager>
     private float _maxPitch = 1.8f;
 
     public static string ResPath = "res://Audio/";
+    
+    private SettingData _setting=> SettingManager.Instance.Setting;
 
     public override void Init()
     {
@@ -33,6 +35,11 @@ public partial class AudioManager : SingletonNode<AudioManager>
             AddChild(audioPlayer);
             _audioPlayerList.Add(audioPlayer);
         }
+        
+        //根据SettingManager设置音量
+        SetBGMVolume(_setting.IsBGMMute ? 0 : SettingManager.Instance.Setting.BGMVolume);
+        SetAudioVolume(_setting.IsAudioMute ? 0 : SettingManager.Instance.Setting.AudioVolume);
+        
     }
 
     public void SetBGMVolume(float volume)
@@ -63,7 +70,7 @@ public partial class AudioManager : SingletonNode<AudioManager>
 
     public void PlayBGM(string name)
     {
-        AudioStream audioStream = ResourceLoader.Load<AudioStream>(PathDefine.AudioPath + name);
+        AudioStream audioStream = ResourceLoader.Load<AudioStream>(PathDefine.BGMPath + name);
 
         PlayBGM(audioStream);
     }

@@ -1,11 +1,12 @@
 // 文件：UIManager.cs
 // 作者：急冻雪柜
-// 描述：
+// 描述：UI管理器
 // 日期：2024/09/19 19:51
 
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Godot;
 
 namespace TinyFramework;
@@ -30,7 +31,7 @@ public partial class UIManager:SingletonNode<UIManager>
     
 
 
-    private readonly Dictionary<string, Control> _panelDict = new Dictionary<string, Control>();
+    private readonly Dictionary<string, Panel> _panelDict = new Dictionary<string, Panel>();
     private readonly Queue<string> _tipsQueue = new Queue<string>();
     private bool isTipShow = false;
     
@@ -52,22 +53,25 @@ public partial class UIManager:SingletonNode<UIManager>
         }
     }
 
-    public void ShowUI<T>(UILayer uiLayer=UILayer.Bottom,Action callback=null) where T : Control
+    public void ShowUI<T>(UILayer uiLayer=UILayer.Bottom,Action callback=null) where T : BasePanel
     {
         string panelName = typeof(T).Name;
-        if (_panelDict.TryGetValue(panelName,out Control ui))
+        if (_panelDict.TryGetValue(panelName,out Panel ui))
         {
-            ui?.Show();
+            (ui as BasePanel).OnShow();
             callback?.Invoke();
             return;
         }
-        
-        PackedScene packedScene = ResourceLoader.Load<PackedScene>(PathDefine.UIPath + panelName+".tscn");
+
+        string fullName = Path.Combine(PathDefine.UIPath, panelName + ".tscn");
+
+        PackedScene packedScene = ResourceLoader.Load<PackedScene>(fullName);
         if (packedScene is null)
         {
             return;
         }
-        ui = packedScene.Instantiate<Control>();
+
+        ui = packedScene.Instantiate<Panel>();
         ui.Name = panelName;
         switch (uiLayer)
         {
@@ -81,9 +85,29 @@ public partial class UIManager:SingletonNode<UIManager>
                 _top.AddChild(ui);
                 break;
         }
-        ui.Show();
+        (ui as BasePanel)?.OnShow();
         callback?.Invoke();
         _panelDict.Add(panelName,ui);
+    }
+    
+    public void HideUI<T>() where T : BasePanel
+    {
+        string panelName = typeof(T).Name;
+        if (_panelDict.TryGetValue(panelName,out Panel ui))
+        {
+            (ui as BasePanel)?.OnHide();
+            return;
+        }
+    }
+
+    public void CloseUI(Panel ui)
+    {
+        if (_panelDict.Values.Contains(ui))
+        {
+            _panelDict.Remove(ui.Name);
+            (ui as BasePanel)?.OnHide();
+            ui.QueueFree();
+        }
     }
     
     public void AddTips(string content)

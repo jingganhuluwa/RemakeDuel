@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://62qefvg27qva"]
+
+[ext_resource type="Script" uid="uid://bocaohf57ff2f" path="res://Scripts/Game/UI/MainPanel.cs" id="1_2djvr"]
+[ext_resource type="Texture2D" uid="uid://ewwq5d18m0sb" path="res://Resources/Images/Character/Xiaohu.png" id="2_nkq16"]
+[ext_resource type="Theme" uid="uid://drvrnwjphph8f" path="res://Resources/Theme/TinyTheme.tres" id="3_qecas"]
+
+[node name="MainPanel" type="Panel" node_paths=PackedStringArray("_startBtn", "_settingBtn", "_xiaohuSelectButton", "_qiqiSelectButton", "_sumeiSelectButton", "_yiruSelectButton")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2djvr")
+_startBtn = NodePath("StartButton")
+_settingBtn = NodePath("SettingButton")
+_xiaohuSelectButton = NodePath("VBoxContainer/XiaohuSelectButton")
+_qiqiSelectButton = NodePath("VBoxContainer/QiqiSelectButton")
+_sumeiSelectButton = NodePath("VBoxContainer/SumeiSelectButton")
+_yiruSelectButton = NodePath("VBoxContainer/YiruSelectButton")
+
+[node name="Character" type="Sprite2D" parent="."]
+position = Vector2(657, 548)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_nkq16")
+
+[node name="SettingButton" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.929167
+anchor_top = 0.00277778
+anchor_right = 0.995833
+anchor_bottom = 0.0759259
+theme = ExtResource("3_qecas")
+theme_override_font_sizes/font_size = 60
+text = "设置"
+metadata/_edit_use_anchors_ = true
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.420312
+anchor_top = 0.873148
+anchor_right = 0.591146
+anchor_bottom = 0.968518
+theme = ExtResource("3_qecas")
+theme_override_font_sizes/font_size = 80
+text = "开始游戏"
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 427.0
+offset_right = 209.0
+offset_bottom = 803.0
+theme_override_constants/separation = 20
+
+[node name="XiaohuSelectButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "王小虎"
+
+[node name="QiqiSelectButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "沈欺霜"
+
+[node name="SumeiSelectButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "苏 媚"
+
+[node name="YiruSelectButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "李忆如"

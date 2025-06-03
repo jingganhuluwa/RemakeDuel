@@ -13,6 +13,8 @@ public partial class GameRoot:SingletonNode<GameRoot>
         Init();
         
         InitManager();
+        UIManager.Instance.ShowUI<WelcomePanel>();
+        AudioManager.Instance.PlayBGM("Xian013水龙吟.mp3");
     }
 
     private void InitManager()

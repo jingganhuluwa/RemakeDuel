@@ -10,7 +10,8 @@ namespace TinyFramework;
 public static class PathDefine
 {
     public const string ResPath ="res://Resources/";
-    public const string AudioPath =ResPath+"Audio/"; 
+    public const string AudioPath =ResPath+"Sound/Audio/"; 
+    public const string BGMPath =ResPath+"Sound/BGM/"; 
     public const string ScenePath =ResPath+"Scene/"; 
     public const string PrefabsPath =ResPath+"Prefabs/"; 
     public const string UIPath =ResPath+"UI/"; 

@@ -1,0 +1,102 @@
+[gd_scene load_steps=6 format=3 uid="uid://cid6atw0xbg8x"]
+
+[ext_resource type="Script" uid="uid://b4w857tklgymy" path="res://Scripts/Game/UI/SettingPanel.cs" id="1_hhp6x"]
+[ext_resource type="FontFile" uid="uid://5lixhckwa5pf" path="res://Resources/Fonts/LXGWWenKaiMono-Medium.ttf" id="2_asdpa"]
+[ext_resource type="Theme" uid="uid://drvrnwjphph8f" path="res://Resources/Theme/TinyTheme.tres" id="3_oastd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_asdpa"]
+bg_color = Color(0.113725, 0.180392, 0.239216, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_oastd"]
+font = ExtResource("2_asdpa")
+font_size = 44
+
+[node name="SettingPanel" type="Panel" node_paths=PackedStringArray("_audioSlider", "_audioButton", "_bgmSlider", "_bgmButton", "_saveButton")]
+anchors_preset = -1
+anchor_left = 0.1875
+anchor_top = 0.133333
+anchor_right = 0.8125
+anchor_bottom = 0.874074
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(600, 400)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_asdpa")
+script = ExtResource("1_hhp6x")
+_audioSlider = NodePath("CenterContainer/VBoxContainer/Audio/AudioSlider")
+_audioButton = NodePath("CenterContainer/VBoxContainer/Audio/AudioCheckButton")
+_bgmSlider = NodePath("CenterContainer/VBoxContainer/BGM/BGMSlider")
+_bgmButton = NodePath("CenterContainer/VBoxContainer/BGM/BGMCheckButton")
+_saveButton = NodePath("CenterContainer/VBoxContainer/SaveButton")
+metadata/_edit_use_anchors_ = true
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Audio" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Audio"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "音效"
+label_settings = SubResource("LabelSettings_oastd")
+
+[node name="AudioSlider" type="HSlider" parent="CenterContainer/VBoxContainer/Audio"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("3_oastd")
+value = 100.0
+
+[node name="AudioCheckButton" type="CheckButton" parent="CenterContainer/VBoxContainer/Audio"]
+layout_mode = 2
+theme = ExtResource("3_oastd")
+button_pressed = true
+
+[node name="BGM" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BGM"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "BGM "
+label_settings = SubResource("LabelSettings_oastd")
+
+[node name="BGMSlider" type="HSlider" parent="CenterContainer/VBoxContainer/BGM"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("3_oastd")
+value = 50.0
+
+[node name="BGMCheckButton" type="CheckButton" parent="CenterContainer/VBoxContainer/BGM"]
+layout_mode = 2
+theme = ExtResource("3_oastd")
+button_pressed = true
+
+[node name="Empty" type="Control" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="SaveButton" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_asdpa")
+theme_override_font_sizes/font_size = 35
+text = "保存"
